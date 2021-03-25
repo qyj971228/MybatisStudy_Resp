@@ -1,0 +1,13 @@
+*配置详见com.qyj.mapper/UserMapper.xml
+    1.mybatis插入操作
+        *详见com.qyj.test.MyBatistest.test2()
+        *提交事务
+            -> openSession()默认开启事务,因此必须提交事务后才能改变数据
+            -> openSession(true)自动提交开启
+    2.mybatis修改操作
+        *详见com.qyj.test.MyBatistest.test3()
+
+    3.mybatis删除操作
+        *详见com.qyj.test.MyBatistest.test4()
+
+

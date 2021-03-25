@@ -1,0 +1,22 @@
+mybatis相应API
+    1.SqlSession工厂构建器SqlSessionFactoryBuilder
+        InputStream resourceAsStream = Resources.getResourceAsStream("..");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+
+    2.SqlSession工厂对象SqlSessionFactory
+        1.openSession()
+            *会默认开启一个事务,但事务不会自动提交
+        2.openSession(boolean autoCommit)
+            *参数是否为自动提交,如果设置为true,那么不需要手动提交事务
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+    3.SqlSession会话对象
+        执行语句方法主要有
+            <T> T selectOne(String statement, Object parameter)
+            <E> List<E> selectList(String statement, Object parameter)
+            int insert(String statement, Object parameter)
+            int update(String statement, Object parameter)
+            int delete(String statement, Object parameter)
+        操作事务的方法主要有
+            void commit()
+            void rollback()

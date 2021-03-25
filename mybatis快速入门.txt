@@ -1,0 +1,13 @@
+开发步骤:
+    1.添加坐标 数据库驱动与mybatis
+    2.创建数据表 见/mybatis-study/user
+    3.编写实体类 见com.qyj.domain.User
+    4.编写映射文件UserMapper.xml 见com.qyj.mapper/UserMapper.xml
+        *主要描述sql语句
+        *命名空间和id结合调用语句
+        *指定返回结果集封装的java对象
+    5.编写核心文件SqlMapConfig.xml 见sqlMapConfig.xml
+        *事务管理
+        *数据源
+        *加载映射文件
+    6.编写测试类 见com.qyj.test.MyBatistest

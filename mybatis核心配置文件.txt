@@ -1,0 +1,44 @@
+mybatis核心配置文件 详见sqlMapConfig.xml
+    1.environments标签
+        *数据库环境的配置,支持多环境配置
+        1.environments default
+            *默认使用的环境
+        2.environment id
+            *环境
+        3.transactionManager type
+            *指定事务管理器类型
+            1.JDBC
+                直接使用了JDBC的提交和回滚设置,它依赖于从数据源得到的连接来管理事务的作用域
+            2.MANAGED
+                不提交和回滚连接,而是让容器来管理事务的整个生命周期
+                默认情况下会关闭连接,某些容器不希望这样,因此需要将其设置为false来阻止它的默认关闭行为
+                使用的并不多
+        4.dataSource type
+            *数据源类型
+            1.UNPOOLED
+                这个数据源的实现只是每次被请求时打开和关闭连接
+            2.POOLED
+                这种数据源的实现利用"池"的概念将JDBC对象组织起来
+            3.JNDI
+                这个数据源的实现是为了能在如EJB或应用服务器这类容器中使用
+                容器可以集中或在外部配置数据源,然后放置一个JNDI上下文的引用
+    2.mappers标签
+        *加载映射文件
+        使用相对于类路径的资源引用 <mapper resource="com.qyj.mapper/UserMapper.xml"/>
+            *使用最多
+        使用完全限定资源定位符(URL) <mapper url=".."/>
+        使用映射器接口实现类的完全限定类名 <mapper class=".."/>
+        将包内的映射器接口全部实现注册为映射器 <package name=".."/>
+
+    3.properties标签
+        *用于加载额外的properties配置文件
+
+    4.typeAliases标签
+        *类型别名是为java类型设置一个别名,目的是在映射文件中使用更简单的类名
+        *自定义别名在加载映射文件之前
+        mybatis已经为一些数据类型指定别名
+        String->string
+        Long->long
+        Integer->int
+        Double->double
+        Boolean->boolean
