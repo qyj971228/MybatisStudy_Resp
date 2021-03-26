@@ -1,10 +1,13 @@
 package com.qyj.domain;
 
+import java.util.Date;
+
 public class User {
 
     private int id;
     private String username;
     private String password;
+    private Date birthday;
 
     public int getId() {
         return id;
@@ -30,12 +33,21 @@ public class User {
         this.password = password;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", birthday=" + birthday +
                 '}';
     }
 }

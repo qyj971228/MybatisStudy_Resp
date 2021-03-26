@@ -1,1 +1,56 @@
 mybatis核心配置文件深入
+    1.typeHandlers标签
+        *自定义数据类型转换器
+        开发步骤:
+            *详见com.qyj.handler.DateTypeHandler
+            1.定义转换继承类BaseTypeHandler<T>
+            2.覆盖4个未实现的方法
+                setNonNullParameter
+                    *java程序设置数据到数据库的回调方法
+                getNullableResult
+                    *查询mysql字符串类型转换成java的Type类型的方法
+            4.在mybatis核心配置文件中进行注册
+                <!--注册类型处理器-->
+                <typeHandlers>
+                    <typeHandler handler="com.qyj.handler.DateTypeHandler"/>
+                </typeHandlers>
+            5.测试转换是否正确
+
+    2.plugins标签
+        *mybatis可以使用第三方插件来对功能进行扩展
+        *PageHelper是将分页的复杂操作进行封装,使用简单的方式即可获得分页的相关数据
+        开发步骤:
+            1.导入通用PageHelper的坐标
+                <!--plugins-PageHelper-->
+                    <dependency>
+                        <groupId>com.github.pagehelper</groupId>
+                        <artifactId>pagehelper</artifactId>
+                        <version>3.7.5</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.github.jsqlparser</groupId>
+                        <artifactId>jsqlparser</artifactId>
+                        <version>0.9.1</version>
+                    </dependency>
+            2.在mybatis核心配置文件中配置PageHelper插件
+                <!--配置分页助手插件-->
+                    <plugins>
+                        <plugin interceptor="com.github.pagehelper.PageHelper">
+                            <property name="dialect" value="mysql"/><!--指定数据库-->
+                        </plugin>
+                    </plugins>
+            3.测试分页数据获取
+                *设置分页的相关参数 当前页+每页显示的条数
+                    PageHelper.startPage(int PageNum,int PageSize)
+                *获得分页相关参数
+                    PageInfo<User> pageInfo = new PageInfo<User>(all);
+                    System.out.println("当前页:"+pageInfo.getPageNum());
+                    System.out.println("每页显示条数:"+pageInfo.getPageSize());
+                    System.out.println("总页数:"+pageInfo.getPages());
+                    System.out.println("总条数:"+pageInfo.getTotal());
+                    System.out.println("上一页:"+pageInfo.getPrePage());
+                    System.out.println("下一页:"+pageInfo.getNextPage());
+                    System.out.println("是否是第一页:"+pageInfo.isIsFirstPage());
+                    System.out.println("是否是最后一页:"+pageInfo.isIsLastPage());
+
+

@@ -3,12 +3,16 @@
 
 <mapper namespace="com.qyj.dao.UserMapper">
 
+    <!--sql语句抽取-->
+    <sql id="selectUser">select * from user</sql>
+
     <select id="findAll" resultType="user">
-        select * from user
+        <include refid="selectUser"></include>
     </select>
 
+    <!--动态sql-if-->
     <select id="findOne" resultType="user" parameterType="user">
-        select * from user
+        <include refid="selectUser"></include>
         <where>
             <if test="id!=0">
                 and id = #{id}
@@ -22,8 +26,9 @@
         </where>
     </select>
 
+    <!--动态sql-foreach-->
     <select id="findByIds" resultType="user" parameterType="list">
-        select * from user
+        <include refid="selectUser"></include>
         <where>
             <foreach collection="list" open="id in(" close=")" item="id" separator=",">
                 #{id}
@@ -32,7 +37,7 @@
     </select>
 
     <insert id="save" parameterType="user">
-        insert into user values(#{id},#{username},#{password})
+        insert into user values(#{id},#{username},#{password},#{birthday})
     </insert>
 
     <update id="update" parameterType="user">

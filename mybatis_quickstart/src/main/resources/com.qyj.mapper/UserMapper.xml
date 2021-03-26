@@ -37,7 +37,7 @@
     </select>
 
     <insert id="save" parameterType="user">
-        insert into user values(#{id},#{username},#{password})
+        insert into user values(#{id},#{username},#{password},#{birthday})
     </insert>
 
     <update id="update" parameterType="user">
