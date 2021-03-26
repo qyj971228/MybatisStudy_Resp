@@ -1,6 +1,7 @@
 package com.qyj.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class User {
 
@@ -8,6 +9,30 @@ public class User {
     private String username;
     private String password;
     private Date birthday;
+
+    //当前用户存在哪些订单
+    private List<Order> orderList;
+
+    //描述的是当前用户具备哪些角色
+    private List<Role> roleList;
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
+    }
+
+
 
     public int getId() {
         return id;
@@ -41,6 +66,7 @@ public class User {
         this.birthday = birthday;
     }
 
+
     @Override
     public String toString() {
         return "User{" +
@@ -48,6 +74,8 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", birthday=" + birthday +
+                ", orderList=" + orderList +
+                ", roleList=" + roleList +
                 '}';
     }
 }

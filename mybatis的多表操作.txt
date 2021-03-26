@@ -1,0 +1,86 @@
+mybatis的多表操作 *详见UserMapper.xml OrderMapper.xml com.qyj.service.ServiceDemo02
+    *步骤:
+        1.一对多或者多对多时在目标Bean中添加关联表的Bean的List
+        2.在Mapper.xml中根据查询结果配置resultMap
+            *一对一时可选择配置association标签也可直接配置
+            *一对多或者多对多时配置collection标签
+
+    1.一对一
+        <resultMap>
+
+        <resultMap id="orderMap" type="order">
+            <!--
+                手动指定字段与实体属性之间的对应关系
+                column:字段名称
+                property:实体属性
+            -->
+            <id column="oid" property="id"/><!--主键-->
+            <result column="ordertime" property="ordertime"/>
+            <result column="tool" property="tool"/>
+            <result column="uid" property="user.id"/>-->
+            <result column="username" property="user.username"/>-->
+            <result column="password" property="user.password"/>-->
+            <result column="birthday" property="user.birthday"/>-->
+        </resultMap>
+
+                <!--
+                    一种更集中的配置方式
+                    property:
+                        当前实体order中的属性名称
+                    javaType:
+                        当前实体中的属性类型
+                -->
+                <association property="user" javaType="user">
+                    <id column="uid" property="id"/>
+                    <result column="username" property="username"/>
+                    <result column="password" property="password"/>
+                    <result column="birthday" property="birthday"/>
+                </association>
+
+        <select id="findAll" resultMap="userMap">
+            select * , o.id oid from user u,orders o where u.id = o.uid
+        </select>
+
+    2.一对多
+        <resultMap>+<collection>
+
+        <resultMap id="userMap" type="user">
+            <id column="uid" property="id"/>
+            <result column="username" property="username"/>
+            <result column="password" property="password"/>
+            <result column="birthday" property="birthday"/>
+            <!--
+                配置集合信息
+                property:集合名称
+                ofType:当前集合中的数据名称
+            -->
+            <collection property="orderList" ofType="order">
+                <id column="oid" property="id"/>
+                <result column="ordertime" property="ordertime"/>
+                <result column="total" property="total"/>
+                <result column="uid" property="user.id"/>
+            </collection>
+        </resultMap>
+
+        <select id="findAll" resultMap="userMap">
+            select * , o.id oid from user u,orders o where u.id = o.uid
+        </select>
+    3.一对多
+        <resultMap>+<collection>
+
+        <resultMap id="userRoleMap" type="user">
+            <id column="userId" property="id"/>
+            <result column="username" property="username"/>
+            <result column="password" property="password"/>
+            <result column="birthday" property="birthday"/>
+            <collection property="roleList" ofType="role">
+                <id column="roleId" property="id"/>
+                <result column="roleName" property="roleName"/>
+                <result column="roleDesc" property="roleDesc"/>
+            </collection>
+        </resultMap>
+
+        <select id="findUserAndRoleAll" resultMap="userRoleMap">
+            select * from user u,user_role ur,role r where u.id = ur.userId and r.id = ur.roleId
+        </select>
+

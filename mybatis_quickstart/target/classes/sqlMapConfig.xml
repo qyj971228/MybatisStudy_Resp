@@ -10,6 +10,8 @@
     <!--自定义别名-->
     <typeAliases>
         <typeAlias type="com.qyj.domain.User" alias="user"/>
+        <typeAlias type="com.qyj.domain.Order" alias="order"/>
+        <typeAlias type="com.qyj.domain.Role" alias="role"/>
     </typeAliases>
 
     <!--注册类型处理器-->
@@ -42,6 +44,7 @@
     <!--加载映射文件-->
     <mappers>
         <mapper resource="com.qyj.mapper/UserMapper.xml"/>
+        <mapper resource="com.qyj.mapper/OrderMapper.xml"/>
     </mappers>
 
 </configuration>

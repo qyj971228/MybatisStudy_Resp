@@ -9,6 +9,8 @@ public interface UserMapper {
 
     public List<User> findAll() throws IOException;
 
+    public List<User> findUserAndRoleAll() throws IOException;
+
     public List<User> findOne(User user) throws IOException;
 
     public List<User> findByIds(List<Integer> ids) throws IOException;
