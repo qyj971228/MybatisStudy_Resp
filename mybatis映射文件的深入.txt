@@ -1,0 +1,33 @@
+mybatis映射文件的深入 *详见UserMapper.xml
+    1.where和if
+        *重要
+        *如果if条件成立则拼接if标签内的语句
+        *有条件时会拼接where语句
+        例:
+        *如果id不为0则拼接where id = #{id},以此类推
+        *select * from user where id = #{id}
+
+    2.where和foreach
+        collection
+            list:集合
+            array:数组
+        open
+            *开始字符串
+        close
+            *结尾字符串
+        item
+            *项名
+        separator
+            *间隔符
+        例:
+        *将list中的每一项以"id in("开头,以")"结尾,以","为间隔符拼接
+        *select * from user where id in(#{id},...,...)
+
+    3.sql
+        抽取:
+            <sql id="selectUser">select * from user</sql>
+        添加sql依赖:
+            <include refid="selectUser"></include>
+
+
+

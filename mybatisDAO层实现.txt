@@ -1,0 +1,42 @@
+mybatisDAO层实现
+    1.传统开发方式 *需要实现接口
+    2.代理开发方式 *重点
+        *不需要实现接口就可以实现接口方法,由Mybatis框架根据接口定义创建接口的动态代理对象
+        *Mapper接口开发方法只需要编写Mapper接口(相当于Dao接口)
+        *代理对象的方法体同Dao接口实现类方法
+
+        代理实现api:
+        UserMapper mapper = sqlSession.getMapper(class<T> type);//mybatis创建代理对象
+        mapper.method();//实现接口方法
+
+        接口开发规范:
+            1.Mapper.xml(映射文件)的namespace(命名空间)与接口的全限定名相同
+            2.Mapper接口方法名称和Mapper.xml(映射文件)中定义的每个statement的id相同
+            3.Mapper接口的输入参数类型和Mapper.xml(映射文件)中的每个sql的parameterType的类型相同
+            4.Mapper接口的输出参数类型和Mapper.xml(映射文件)中的每个sql的resultType的类型相同
+
+            例:
+            <mapper namespace="com.qyj.dao.UserMapper">
+                <select id="findAll" resultType="user">
+                    select * from user
+                </select>
+                <insert id="save" parameterType="user">
+                    insert into user values(#{id},#{username},#{password})
+                </insert>
+                <update id="update" parameterType="user">
+                    update user set username = #{username},password = #{password} where id = #{id}
+                </update>
+                <delete id="delete" parameterType="user">
+                    delete from user where id = #{id}
+                </delete>
+            </mapper>
+
+            public interface UserMapper {
+                public List<User> findAll() throws IOException;
+                public void save(User user) throws IOException;
+                public void update(User user) throws IOException;
+                public void delete(User user) throws IOException;
+            }
+
+
+

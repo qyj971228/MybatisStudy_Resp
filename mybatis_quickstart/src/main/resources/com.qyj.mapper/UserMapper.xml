@@ -1,10 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="userMapper">
+<mapper namespace="com.qyj.dao.UserMapper">
+
+    <!--sql语句抽取-->
+    <sql id="selectUser">select * from user</sql>
 
     <select id="findAll" resultType="user">
-        select * from user
+        <include refid="selectUser"></include>
+    </select>
+
+    <!--动态sql-if-->
+    <select id="findOne" resultType="user" parameterType="user">
+        <include refid="selectUser"></include>
+        <where>
+            <if test="id!=0">
+                and id = #{id}
+            </if>
+            <if test="username!=null">
+                and username = #{username}
+            </if>
+            <if test="password!=null">
+                and password = #{password}
+            </if>
+        </where>
+    </select>
+
+    <!--动态sql-foreach-->
+    <select id="findByIds" resultType="user" parameterType="list">
+        <include refid="selectUser"></include>
+        <where>
+            <foreach collection="list" open="id in(" close=")" item="id" separator=",">
+                #{id}
+            </foreach>
+        </where>
     </select>
 
     <insert id="save" parameterType="user">
