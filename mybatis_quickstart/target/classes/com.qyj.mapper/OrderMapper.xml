@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qyj.dao.OrderMapper">
+
+    <resultMap id="orderMap" type="order">
+        <!--
+            手动指定字段与实体属性之间的对应关系
+            column:字段名称
+            property:实体属性
+        -->
+        <id column="oid" property="id"/><!--主键-->
+        <result column="ordertime" property="ordertime"/>
+        <result column="tool" property="tool"/>
+<!--        <result column="uid" property="user.id"/>-->
+<!--        <result column="username" property="user.username"/>-->
+<!--        <result column="password" property="user.password"/>-->
+<!--        <result column="birthday" property="user.birthday"/>-->
+        <!--
+            一种更集中的配置方式
+            property:
+                当前实体order中的属性名称
+            javaType:
+                当前实体中的属性类型
+        -->
+        <association property="user" javaType="user">
+            <id column="uid" property="id"/>
+            <result column="username" property="username"/>
+            <result column="password" property="password"/>
+            <result column="birthday" property="birthday"/>
+        </association>
+    </resultMap>
+
+    <select id="findAll" resultMap="orderMap">
+        select *,o.id oid from orders o,user u where o.uid = u.id
+    </select>
+
+    <update id="updateOrderTime" parameterType="com.qyj.domain.Order">
+        update orders set ordertime = #{ordertime} where id = #{id}
+    </update>
+
+</mapper>
