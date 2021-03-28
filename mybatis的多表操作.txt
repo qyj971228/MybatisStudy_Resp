@@ -1,4 +1,4 @@
-mybatis的多表操作 *详见UserMapper.xml OrderMapper.xml com.qyj.service.ServiceDemo02
+mybatis的多表操作 *详见UserMapper.xml OrderMapper.xml com.com.qyj.service.ServiceDemo02
     *步骤:
         1.一对多或者多对多时在目标Bean中添加关联表的Bean的List
         2.在Mapper.xml中根据查询结果配置resultMap

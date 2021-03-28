@@ -16,7 +16,7 @@ mybatisDAO层实现
             4.Mapper接口的输出参数类型和Mapper.xml(映射文件)中的每个sql的resultType的类型相同
 
             例:
-            <mapper namespace="com.qyj.dao.UserMapper">
+            <mapper namespace="com.com.qyj.mapper.UserMapper">
                 <select id="findAll" resultType="user">
                     select * from user
                 </select>

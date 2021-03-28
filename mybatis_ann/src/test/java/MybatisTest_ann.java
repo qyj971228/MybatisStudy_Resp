@@ -1,0 +1,78 @@
+import com.qyj.domain.Order;
+import com.qyj.mapper.OrderMapper;
+import com.qyj.mapper.UserMapper;
+import com.qyj.domain.User;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+
+public class MybatisTest_ann {
+
+    private UserMapper mapper;
+    private OrderMapper ordermapper;
+
+    @Before
+    public void before() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
+        SqlSessionFactory build = new SqlSessionFactoryBuilder().build(resourceAsStream);
+        SqlSession sqlSession = build.openSession(true);
+        mapper = sqlSession.getMapper(UserMapper.class);
+        ordermapper = sqlSession.getMapper(OrderMapper.class);
+    }
+
+    @Test
+    public void testSave() throws IOException {
+        User user = new User();
+        user.setId(30);
+        user.setUsername("test");
+        user.setPassword("123");
+        mapper.save(user);
+    }
+
+    @Test
+    public void update() throws IOException {
+        User user = new User();
+        user.setId(30);
+        user.setUsername("test1");
+        user.setPassword("1231");
+        mapper.update(user);
+    }
+
+    @Test
+    public void delete() throws IOException {
+        User user = new User();
+        user.setId(30);
+        mapper.delete(user);
+    }
+
+    @Test
+    public void findOne() throws IOException {
+        User user = new User();
+        user.setId(10);
+        List<User> one = mapper.findOneById(user);
+        System.out.println(one);
+    }
+
+    @Test
+    public void findAllUser() throws IOException {
+        List<User> allUser = mapper.findAllUser();
+        for (User user: allUser){
+            System.out.println(user);
+        }
+    }
+
+    @Test
+    public void findAllOrder() throws IOException {
+        List<Order> allOrder = ordermapper.findAllOrder();
+        for (Order order: allOrder){
+            System.out.println(order);
+        }
+    }
+}

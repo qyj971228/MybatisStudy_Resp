@@ -1,10 +1,8 @@
-package com.qyj.dao;
+package com.qyj.mapper;
 
 import com.qyj.domain.Order;
-import com.qyj.domain.User;
 
 import java.util.List;
-import java.util.Map;
 
 public interface OrderMapper {
 

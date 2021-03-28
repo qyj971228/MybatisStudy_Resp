@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.qyj.dao.OrderMapper">
+<mapper namespace="com.com.qyj.mapper.OrderMapper">
 
     <resultMap id="orderMap" type="order">
         <!--
@@ -35,7 +35,7 @@
         select *,o.id oid from orders o,user u where o.uid = u.id
     </select>
 
-    <update id="updateOrderTime" parameterType="com.qyj.domain.Order">
+    <update id="updateOrderTime" parameterType="com.com.qyj.domain.Order">
         update orders set ordertime = #{ordertime} where id = #{id}
     </update>
 

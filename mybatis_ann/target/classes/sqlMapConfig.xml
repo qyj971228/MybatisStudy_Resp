@@ -9,14 +9,12 @@
 
     <!--自定义别名-->
     <typeAliases>
-        <typeAlias type="com.com.qyj.domain.User" alias="user"/>
-        <typeAlias type="com.com.qyj.domain.Order" alias="order"/>
-        <typeAlias type="com.com.qyj.domain.Role" alias="role"/>
+        <typeAlias type="com.qyj.domain.User" alias="user"/>
     </typeAliases>
 
     <!--注册类型处理器-->
     <typeHandlers>
-        <typeHandler handler="com.com.qyj.handler.DateTypeHandler"/>
+        <typeHandler handler="com.qyj.handler.DateTypeHandler"/>
     </typeHandlers>
 
     <!--配置分页助手插件-->
@@ -41,10 +39,10 @@
         </environment>
     </environments>
 
-    <!--加载映射配置文件-->
+    <!--加载映射关系 ->同加载映射配置文件 -->
     <mappers>
-        <mapper resource="com.com.qyj.mapper/UserMapper.xml"/>
-        <mapper resource="com.com.qyj.mapper/OrderMapper.xml"/>
+        <!--指定接口所在包-->
+        <package name="com.qyj.mapper"/>
     </mappers>
 
 </configuration>

@@ -1,0 +1,32 @@
+mybatis注解开发
+    *以下注解配置使用在接口内 详细配置见com.qyj.mapper.UserMapper com.qyj.mapper.OrderMapper
+    *对照用,已无实际功能见:见UserMapper.xml
+    *sqlMapConfig.xml映射关系加载
+    例:
+        <!--加载映射关系 ->同加载映射配置文件 -->
+        <mappers>
+            <!--指定接口所在包-->
+            <package name="com.qyj.mapper"/>
+        </mappers>
+
+    1.mybatis常用注解,简单增删改查
+        @Insert     实现新增
+        @Update     实现更新
+        @Delete     实现删除
+        @Select     实现查询
+
+    2.mybatis注解实现复杂映射,多表操作
+        @One        实现一对一结果集封装
+        @Many       实现一对多结果集封装
+        @Result     实现结果集封装,代替result和id
+                        *column 数据库列名
+                        *property 被装配属性名
+                        *one 需要使用的@One
+                            格式 (@Result(one=@One)())
+                        *many 需要使用的@Many
+                            格式 (@Result(many=@Many)())
+        @Results    可以与@Result一起使用,封装多个结果集(封装多个@Result),代替resultMap
+                        *常用格式 @Results({@Result(),@Result()}) @Results(@Result())
+
+
+

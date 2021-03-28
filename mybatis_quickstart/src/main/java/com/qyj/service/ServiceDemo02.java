@@ -1,7 +1,7 @@
 package com.qyj.service;
 
-import com.qyj.dao.OrderMapper;
-import com.qyj.dao.UserMapper;
+import com.qyj.mapper.OrderMapper;
+import com.qyj.mapper.UserMapper;
 import com.qyj.domain.Order;
 import com.qyj.domain.User;
 import org.apache.ibatis.io.Resources;

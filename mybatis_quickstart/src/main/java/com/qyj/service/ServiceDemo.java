@@ -1,11 +1,7 @@
 package com.qyj.service;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.qyj.dao.OrderMapper;
-import com.qyj.dao.UserMapper;
+import com.qyj.mapper.OrderMapper;
 import com.qyj.domain.Order;
-import com.qyj.domain.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -13,9 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class ServiceDemo {
 
@@ -23,7 +17,7 @@ public class ServiceDemo {
 
 //        User user = new User();
 //        user.setId(21);
-//        user.setUsername("qyj");
+//        user.setUsername("com.qyj");
 //        user.setPassword("123");
 
 //        user.setBirthday(new Date());

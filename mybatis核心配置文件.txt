@@ -24,7 +24,7 @@ mybatis核心配置文件 详见sqlMapConfig.xml
                 容器可以集中或在外部配置数据源,然后放置一个JNDI上下文的引用
     2.mappers标签
         *加载映射文件
-        使用相对于类路径的资源引用 <mapper resource="com.qyj.mapper/UserMapper.xml"/>
+        使用相对于类路径的资源引用 <mapper resource="com.com.qyj.mapper/UserMapper.xml"/>
             *使用最多
         使用完全限定资源定位符(URL) <mapper url=".."/>
         使用映射器接口实现类的完全限定类名 <mapper class=".."/>

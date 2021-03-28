@@ -44,6 +44,10 @@
         select * , o.id oid from user u,orders o where u.id = o.uid
     </select>
 
+    <select id="findAllUser" resultType="user">
+        select * from user
+    </select>
+
     <!--动态sql-if-->
     <select id="findOne" resultType="user" parameterType="user">
         <include refid="selectUser"></include>
