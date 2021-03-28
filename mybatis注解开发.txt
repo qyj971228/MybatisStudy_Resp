@@ -1,6 +1,6 @@
 mybatis注解开发
-    *以下注解配置使用在接口内 详细配置见com.qyj.mapper.UserMapper com.qyj.mapper.OrderMapper
-    *对照用,已无实际功能见:见UserMapper.xml
+    *以下注解配置使用在接口内
+    *详细配置见com.qyj.mapper.UserMapper com.qyj.mapper.OrderMapper com.qyj.mapper.RoleMapper
     *sqlMapConfig.xml映射关系加载
     例:
         <!--加载映射关系 ->同加载映射配置文件 -->
@@ -8,6 +8,11 @@ mybatis注解开发
             <!--指定接口所在包-->
             <package name="com.qyj.mapper"/>
         </mappers>
+
+    步骤:
+        1.定义接口,配置注解 -> xxxMapper
+        2.加载映射 ->sqlMapConfig,xml
+        3.测试
 
     1.mybatis常用注解,简单增删改查
         @Insert     实现新增

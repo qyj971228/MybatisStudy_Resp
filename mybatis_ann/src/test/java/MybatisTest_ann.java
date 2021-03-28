@@ -56,7 +56,7 @@ public class MybatisTest_ann {
     public void findOne() throws IOException {
         User user = new User();
         user.setId(10);
-        List<User> one = mapper.findOneById(user);
+        User one = mapper.findOneById(user);
         System.out.println(one);
     }
 
@@ -73,6 +73,35 @@ public class MybatisTest_ann {
         List<Order> allOrder = ordermapper.findAllOrder();
         for (Order order: allOrder){
             System.out.println(order);
+        }
+    }
+
+    /**
+     * 注解方式一对多查询
+     */
+    @Test
+    public void findUserAndOrderAll(){
+//        List<User> userAndOrderAll = mapper.findUserAndOrderAll();
+//        for (User user: userAndOrderAll){
+//            System.out.println(user);
+//        }
+        List<User> userAndOrderAll1 = mapper.findUserAndOrderAll1();
+        for (User user: userAndOrderAll1){
+            System.out.println(user);
+        }
+    }
+    /**
+     * 注解方式多对多查询
+     */
+    @Test
+    public void findUserAndRoleAll(){
+        List<User> userAndRoleAll = mapper.findUserAndRoleAll();
+        for (User user: userAndRoleAll){
+            System.out.println(user);
+        }
+        List<User> userAndRoleAll1 = mapper.findUserAndRoleAll1();
+        for (User user: userAndRoleAll1){
+            System.out.println(user);
         }
     }
 }

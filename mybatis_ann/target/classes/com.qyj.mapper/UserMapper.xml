@@ -23,8 +23,20 @@
         delete from user where id = #{id}
     </delete>
 
-    <select id="findAllOrder" resultMap="orderMap">
+    <resultMap id="orderMap" type="order">
+        <id column="oid" property="id"/>
+        <result column="ordertime" property="ordertime"/>
+        <result column="total" property="total"/>
+        <association property="user" javaType="user">
+            <id column="uid" property="id"/>
+            <result column="username" property="username"/>
+            <result column="password" property="password"/>
+            <result column="birthday" property="birthday"/>
+        </association>
+    </resultMap>
 
+    <select id="findAllOrder" resultMap="orderMap">
+        select * from orders o,user u where o.uid = u.id
     </select>
 
 </mapper>
